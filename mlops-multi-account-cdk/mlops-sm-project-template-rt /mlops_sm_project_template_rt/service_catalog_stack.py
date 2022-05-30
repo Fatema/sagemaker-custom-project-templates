@@ -137,8 +137,9 @@ class ServiceCatalogStack(Stack):
                 actions=["iam:PassRole"],
                 effect=iam.Effect.ALLOW,
                 resources=[
-                    f"arn:aws:iam::{PREPROD_ACCOUNT}:role/*",
-                    f"arn:aws:iam::{PROD_ACCOUNT}:role/*",
+                    # f"arn:aws:iam::{PREPROD_ACCOUNT}:role/*",
+                    # f"arn:aws:iam::{PROD_ACCOUNT}:role/*",
+                    "*"
                 ],
             ),
         )
@@ -301,7 +302,7 @@ class ServiceCatalogStack(Stack):
         #     pipeline_artifact_bucket.bucket_name,
         # )
 
-        SSMConstruct(self, "MLOpsSSM")
+        # SSMConstruct(self, "MLOpsSSM")
 
     def export_ssm(self, key: str, param_name: str, value: str):
         param = ssm.StringParameter(self, key, parameter_name=param_name, string_value=value)
