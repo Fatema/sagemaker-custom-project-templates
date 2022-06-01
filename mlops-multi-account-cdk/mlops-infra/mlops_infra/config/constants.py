@@ -21,14 +21,10 @@ PIPELINE_BRANCH = "main"
 PIPELINE_ACCOUNT = ""
 
 DEV_ACCOUNT = ""
-DEV_REGION = "eu-west-1"
 
 PREPROD_ACCOUNT = ""
-PREPROD_REGION = "eu-west-1"
 
 PROD_ACCOUNT = ""
-PROD_REGION = "eu-west-1"
-
 
 DEFAULT_DEPLOYMENT_REGION = "eu-west-1"
 APP_PREFIX = "mlops"

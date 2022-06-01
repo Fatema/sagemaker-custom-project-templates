@@ -23,6 +23,6 @@ cdk bootstrap aws://$gov_account/$region --profile $gov_profile
 
 cdk bootstrap aws://$dev_account/$region --trust $gov_account --cloudformation-execution-policies 'arn:aws:iam::aws:policy/AdministratorAccess' --profile $dev_profile
 
-cdk bootstrap aws://$preprod_account/$region --trust $dev_account $gov_account --cloudformation-execution-policies 'arn:aws:iam::aws:policy/AdministratorAccess' --profile $preprod_profile
+cdk bootstrap aws://$preprod_account/$region --trust $dev_account,$gov_account --cloudformation-execution-policies 'arn:aws:iam::aws:policy/AdministratorAccess' --profile $preprod_profile
 
-cdk bootstrap aws://$prod_account/$region --trust $dev_account $gov_account --cloudformation-execution-policies 'arn:aws:iam::aws:policy/AdministratorAccess' --profile $prod_profile
+cdk bootstrap aws://$prod_account/$region --trust $dev_account,$gov_account --cloudformation-execution-policies 'arn:aws:iam::aws:policy/AdministratorAccess' --profile $prod_profile

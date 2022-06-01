@@ -63,30 +63,31 @@ class MLOpsStack(Stack):
 
         preprod_account = aws_cdk.CfnParameter(
             self,
-            "PreProdAccountID",
-            type="Number",
-            min_length=12,
-            max_length=12,
-            description="Account ID for PreProd Account",
-        ).value_as_number
+            "PreProdAccount",
+            type="String",
+            min_length=11,
+            max_length=13,
+            description="Id of preprod account.",
+        ).value_as_string
 
         prod_account = aws_cdk.CfnParameter(
             self,
-            "ProdAccountID",
-            type="Number",
-            min_length=12,
-            max_length=12,
-            description="Account ID for Prod Account",
-        ).value_as_number
+            "ProdAccount",
+            type="String",
+            min_length=11,
+            max_length=13,
+            description="Id of prod account.",
+        ).value_as_string
 
         deployment_region = aws_cdk.CfnParameter(
             self,
             "DeploymentRegion",
             type="String",
             min_length=8,
-            max_length=12,
-            description="Region to be used for deployment in PreProd and Prod Accounts",
-        ).value_as_number
+            max_length=10,
+            description="Deployment region for preprod and prod account.",
+        ).value_as_string
+
 
         Tags.of(self).add("sagemaker:project-id", project_id)
         Tags.of(self).add("sagemaker:project-name", project_name)
@@ -286,5 +287,5 @@ class MLOpsStack(Stack):
             deploy_app_key,
             preprod_account,
             prod_account,
-            deployment_region
+            deployment_region,
         )

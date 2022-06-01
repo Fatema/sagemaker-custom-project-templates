@@ -263,31 +263,31 @@ class DeployPipelineConstruct(Construct):
                     ],
                 ),
                 codepipeline_actions.ManualApprovalAction(
-                    action_name="Approve_Staging",
+                    action_name="Approve_PreProd",
                     run_order=2,
-                    additional_information="Approving deployment for staging",
+                    additional_information="Approving deployment for preprod",
                 ),
             ],
         )
 
         deploy_code_pipeline.add_stage(
-            stage_name="DeployStaging",
+            stage_name="DeployPreProd",
             actions=[
                 codepipeline_actions.CloudFormationCreateUpdateStackAction(
-                    action_name="Deploy_CFN_Staging",
+                    action_name="Deploy_CFN_PreProd",
                     run_order=1,
-                    template_path=cdk_synth_artifact.at_path("staging.template.json"),
-                    stack_name=f"{project_name}-{construct_id}-staging",
+                    template_path=cdk_synth_artifact.at_path("preprod.template.json"),
+                    stack_name=f"{project_name}-{construct_id}-preprod",
                     admin_permissions=False,
                     replace_on_failure=True,
                     role=iam.Role.from_role_arn(
                         self,
-                        "StagingActionRole",
+                        "PreProdActionRole",
                         f"arn:{Aws.PARTITION}:iam::{preprod_account}:role/cdk-hnb659fds-deploy-role-{preprod_account}-{deployment_region}",
                     ),
                     deployment_role=iam.Role.from_role_arn(
                         self,
-                        "StagingDeploymentRole",
+                        "PreProdDeploymentRole",
                         f"arn:{Aws.PARTITION}:iam::{preprod_account}:role/cdk-hnb659fds-cfn-exec-role-{preprod_account}-{deployment_region}",
                     ),
                     cfn_capabilities=[
