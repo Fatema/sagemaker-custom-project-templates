@@ -41,7 +41,6 @@ class CodeCommitStack(Stack):
         self,
         scope: Construct,
         id: str,
-        # cloud_assembly_artifact: codepipeline.Artifact,
         **kwargs,
     ):
         super().__init__(scope, id, **kwargs)

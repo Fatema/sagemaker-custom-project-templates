@@ -41,7 +41,6 @@ class CodeCommitStack(Stack):
         self,
         scope: Construct,
         id: str,
-        # cloud_assembly_artifact: codepipeline.Artifact,
         **kwargs,
     ):
         super().__init__(scope, id, **kwargs)
@@ -74,9 +73,4 @@ class CodeCommitStack(Stack):
                 ),
                 branch_name="main",
             ),
-        )
-
-        # Reference the newly created repository
-        backend_repository = codecommit.Repository.from_repository_name(
-            self, "ProjectTemplateRepo", build_app_cfnrepository.attr_name
         )
